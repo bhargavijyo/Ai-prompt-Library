@@ -1,5 +1,6 @@
 import os
 
+PORT = os.environ.get("PORT", "8000")
 
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key')
@@ -51,15 +52,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ✅ Fix warning
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ✅ DATABASE
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'user',
-        'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': os.environ.get("DB_USER"),
+        'PASSWORD': os.environ.get("DB_PASSWORD"),
+        'HOST': os.environ.get("DB_HOST"),
+        'PORT': os.environ.get("DB_PORT", "5432"),
     }
 }
 
